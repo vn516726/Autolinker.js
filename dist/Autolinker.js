@@ -1727,7 +1727,7 @@ Autolinker.matchParser.MatchParser = Autolinker.Util.extend( Object, {
 	matcherRegex : (function() {
 		var twitterRegex = /(^|[^\w])@(\w{1,15})/,              // For matching a twitter handle. Ex: @gregory_jacobs
 
-		    hashtagRegex = /(^|[^\w])#(\w{1,15})/,              // For matching a Hashtag. Ex: #games
+		    hashtagRegex = /(^|[^\w])#([\w]+|[\u4e00-\u9fa5]+)/,// For matching a Hashtag. Ex: #games
 
 		    emailRegex = /(?:[\-;:&=\+\$,\w\.]+@)/,             // something@ for email addresses (a.k.a. local-part)
 		    phoneRegex = /(?:\+?\d{1,3}[-\s.])?\(?\d{3}\)?[-\s.]?\d{3}[-\s.]\d{4}/,  // ex: (123) 456-7890, 123 456 7890, 123-456-7890, etc.
@@ -2678,7 +2678,6 @@ Autolinker.match.Url = Autolinker.Util.extend( Autolinker.match.Match, {
 	 */
 	getUrl : function() {
 		var url = this.url;
-		
 		// if the url string doesn't begin with a protocol, assume 'http://'
 		if( !this.protocolRelativeMatch && !this.protocolUrlMatch && !this.protocolPrepended ) {
 			url = this.url = 'http://' + url;
